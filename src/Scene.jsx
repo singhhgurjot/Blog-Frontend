@@ -18,7 +18,7 @@ export default function Model(props) {
 
   return (
     <>
-      <OrbitControls />
+      {/*<OrbitControls />*/}
       <primitive object={papers.scene} scale={[2, 2, 2]} ref={modelRef}/>
       <Environment preset={'city'} />
     </>
