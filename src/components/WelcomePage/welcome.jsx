@@ -2,18 +2,16 @@ import React, { Suspense } from 'react'
 import Navbar from "../BasicNav/nav"
 import "./welcome.css"
 import {Canvas} from "@react-three/fiber"
-import { OrbitControls,useGLTF } from '@react-three/drei'
-import {useRef} from "react"
 import Model from "../../Scene"
 import { useNavigate } from 'react-router-dom'
 export default function welcome() {
   const navigate=useNavigate();
   return (
-    <div className="w-screen h-screen">
+    <div className="w-full h-full">
         <Navbar/>
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center ">
         <div>
-            <p className="font-mainfont font-black text-6xl mt-20 ml-10 ">UNLEASH YOUR THOUGHTS!</p>
+            <p className="font-mainfont font-black text-6xl ml-10 ">UNLEASH YOUR THOUGHTS!</p>
         <p className="font-mainfont ml-10 text-6xl font-black diveinto mt-3">dive into scribblesphere </p>
         <div className="descriptionbox">
           <p className="font-mainfont ml-10 text-1xl font-black diveinto mt-3 descriptionbox">Welcome to Scribblesphere, your ultimate platform for sharing your thoughts, ideas, and stories with the world.

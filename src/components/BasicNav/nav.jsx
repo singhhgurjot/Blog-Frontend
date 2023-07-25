@@ -11,9 +11,9 @@ export default function Nav() {
         <p className="text-white ml-20 font-mainfont text-2xl italic">ScribbleSphere</p>
       </div>
       <div className="flex items-center">
-        <p className="text-white mr-20 font-mainfont text-2xl" onClick={()=>{
+        <a className="text-white mr-20 font-mainfont text-2xl" href="" onClick={()=>{
           navigate("/login");
-        }} >Login</p>
+        }} >Login</a>
           <button className='rounded-full  py-1 px-7 getstarted font-mainfont-black bold italic mr-10 text-2xl' onClick={()=>{
             navigate("/register");
           }}>Get Started!</button>
