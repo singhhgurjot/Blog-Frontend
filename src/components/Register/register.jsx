@@ -4,7 +4,40 @@ import "./register.css"
 import { OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import Model from "../../register3D"
+import toast, { Toaster } from 'react-hot-toast';
+import axios from "axios"
+import {useState} from "react"
+import { useNavigate } from 'react-router-dom'
 export default function register() {
+  const [name,setName]=useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirmPassword] = useState("");
+  const navigate=useNavigate();
+
+  const formSubmit=(e)=>{
+    e.preventDefault();
+    const reqBody = {
+      name: name,
+      username: username,
+      password: password,
+      password_confirmation: confirm,
+      tc: true
+    }
+    axios.post("http://localhost:8080/api/user/register", reqBody)
+      .then((res) => {
+        toast(res.data.message);
+        if (res.data.success == true) {
+          setTimeout(() => {
+            navigate("/login")
+
+          }, 3000)
+        }
+      })
+      .catch((err) => {
+        toast(err.response.data.message);
+      });
+  }
   return (
     <div className=" flex flex-col h-screen w-screen justify-center">
       <Navbar/>
@@ -12,7 +45,7 @@ export default function register() {
        
 
         <div className="w-full max-w-md form-con formm">
-          <form className="bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4">
+          <form className="bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4" onSubmit={formSubmit}>
             <h1 className="font-mainfont text-bold text-xl">Create an Account for Free</h1>
             <h1 className="font-mainfont mb-5 ">start scribbling now!</h1>
             <div className="mb-4">
@@ -27,6 +60,9 @@ export default function register() {
                 id="Name"
                 type="text"
                 placeholder="Name"
+                onChange={(e)=>{
+                  setName(e.target.value);
+                }}
               />
             </div>
             <div className="mb-4">
@@ -41,6 +77,9 @@ export default function register() {
                 id="username"
                 type="text"
                 placeholder="Username"
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
               />
             </div>
             <div className="mb-6">
@@ -55,6 +94,9 @@ export default function register() {
                 id="password"
                 type="password"
                 placeholder="******************"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </div>
             <div className="mb-6">
@@ -69,13 +111,16 @@ export default function register() {
                 id="confirmpassword"
                 type="password"
                 placeholder="******************"
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value);
+                }}
               />
 
             </div>
             <div className="flex items-center justify-between">
               <button
                 className=" text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="button"
+                type="submit"
               >
                 Register
               </button>
@@ -96,7 +141,7 @@ export default function register() {
 
       </div>
       
-      
+      <Toaster />
     </div>
   )
 }

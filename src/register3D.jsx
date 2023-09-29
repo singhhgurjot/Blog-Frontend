@@ -21,7 +21,7 @@ export default function Model(props) {
     return (
         <>
        
-        <Environment preset={"city"}></Environment>
+        <Environment preset={"sunset"}></Environment>
         <group ref={group} {...props} dispose={null} layers={1}>
             <group name="Sketchfab_Scene">
                 <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={[0.08,0.08,0.08]}>
